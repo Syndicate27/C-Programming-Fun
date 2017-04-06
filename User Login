@@ -1,0 +1,94 @@
+#include <stdio.h> //Standard Library
+#include <stdbool.h> //Boolean manipulation library :D
+#include <string.h> //Super necessary for easier string manipulation
+
+//GLOBAL VARIABLES
+
+char USERNAME[] = {'J','u','n','g','l','e','M','o','n','k','e','y','\0'};
+char PASSWORD[] = {'h','a','c','k','e','r','\0'};
+static int ATTEMPTS = 4;
+
+// This function is created to auto generate our Menu for the user to interact with
+void generateMenu() {
+	int menu_option = 0;
+	char menu1[] = {'C','h','a','n','g','e',' ','N','a','m','e','\0'};
+	char menu2[] = {'R','e','s','e','t',' ','P','a','s','s','w','o','r','d','\0'};
+	char menu3[] = {'R','a','n','d','o','m',' ','Q','u','o','t','e','\0'};
+	char menu4[] = {'Q','u','i','t','\0'};
+	
+	printf(" 1. %s \n 2. %s \n 3. %s \n 4. %s \n",menu1, menu2, menu3, menu4);
+	printf("Enter the menu number: ");
+		scanf("%d", &menu_option); //make sure you have your '&' sign after the variable to store value in mem address
+			while(1){
+				if(menu_option == 1) {
+					printf("You selected option 1. You have decided to change your current user name. \n");
+					printf("Your current username is: %s \n", USERNAME);
+					printf("Please enter new username: \n");
+					scanf("%s", &USERNAME);
+					printf("Your username has been changed to: %s \n", USERNAME);
+					generateMenu();
+					break;
+				}
+				if(menu_option == 2) {
+					printf("You selected option 2. You have decided to Reset your Password. \n");
+					break;
+				}
+				if(menu_option == 3) {
+					printf("You selected option 3. You have decided to hear a Random Quote. \n");
+					break;
+				}
+				if(menu_option == 4) {
+					printf("You selected option 4. You have decided to quit. Goodbye \n");
+					break;
+				}
+				else{
+					printf("Incorrect Entry Please try again. \n");
+					generateMenu();
+					break;
+				}
+				
+			}
+}
+//This function will generate random quotes
+
+void generate_randomQuote(){
+	
+}
+
+int main() {
+	
+	int passlength;
+	//char password[] = {'\0'};
+	//char password[] = {'h','a','c','k','e','r','\0'}; 
+	char temp[] = {'\0'};
+	char *passptr;
+	
+	
+	//strcpy(*passptr,password);
+	
+	
+	
+	printf("So you want to login in eh? What's the secret password? \n");
+	//we will need to create a function to compare the strings
+	// we should set strcmp value equal to 1 for a false statement
+	for(;ATTEMPTS >= 0; ATTEMPTS--) {
+		scanf("%s", &temp);
+		if(strcmp(PASSWORD,temp) == 1) {
+			printf("Sorry homie you don't have the right password. You can't login in =^P \n");
+			printf("Here is a hint. \n The password is this many characters: ");
+			passlength = strlen(PASSWORD);
+			printf("%d \n",passlength);
+			printf("Please try again! You have %d ATTEMPTS REMAINING!!!", ATTEMPTS);
+			printf("\n Attempt # %d \n", ATTEMPTS );
+		}
+		else {
+			printf("Hey you got the password. What would you like to do? \n");
+			generateMenu();
+		}
+	}	
+	
+	
+	
+	
+	return 0;
+}
